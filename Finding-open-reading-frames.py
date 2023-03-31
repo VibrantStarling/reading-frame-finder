@@ -1,2 +1,0 @@
-# Finding open reading frames
-
