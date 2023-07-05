@@ -1,6 +1,7 @@
 import csv
 from Bio import SeqIO
 import argparse
+import re
 
 parser = argparse.ArgumentParser(
      description="A simple script to fix the lack of frame values in gff files produced by liftoff",
@@ -18,12 +19,12 @@ liftoff_gff = args.liftoff_gff
 
 try:
     with open(genome_fasta, "r") as f:
-        characters = ["A","T","G","C"]
+        alphabet = {'dna':re.compile('^[actgn]*$', re.I)}
         first = str(f.readline())
         second = str(f.readline())
         if ">" not in first:
             raise Exception("Your genome is not a fasta file")
-        elif all(x in characters for x in second)==False:
+        elif alphabet['dna'].search(second) is None:
             raise Exception("Your genome is not nucleotide sequence")
 except FileNotFoundError:
     print("Genome fasta is not in the current directory")
