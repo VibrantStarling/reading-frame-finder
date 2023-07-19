@@ -5,7 +5,6 @@ import re
 import pandas as pd
 
 parser = argparse.ArgumentParser(
-     prog='liftoff2apollo',
      formatter_class=argparse.RawDescriptionHelpFormatter,
      description='''\
      Convert liftoff GFF3 outputs into Apollo friendly GFF3 files.
